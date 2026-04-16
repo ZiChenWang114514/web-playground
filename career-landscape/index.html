@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>领域大横评 · 就业景气全景图谱 | Career Landscape</title>
-  <meta name="description" content="跨越生化、计算机、金融与交叉学科的多维可视化对比：计算驱动度 × 薪资潜力 × 未来增长率。">
+  <meta name="description" content="跨越生化、计算机、金融与交叉学科的多维可视化对比：计算驱动度 × 薪资潜力 × 未来增长率。数据更新至 2026-04，附公开信源。">
   <link rel="stylesheet" href="style.css">
-  <!-- Plotly.js CDN (v2.35, ~3.4MB gzipped)，纯前端无需后端 -->
   <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 </head>
 <body>
 
 <header>
   <h1>🧪 领域大横评：就业景气全景图谱</h1>
-  <div class="subtitle">通过 15 个维度坐标，俯瞰纯计算驱动程度与商业化薪资潜力的交叉关系</div>
+  <div class="subtitle">
+    15 个领域 · 3 个维度 · 数据截至 <strong>2026-04</strong> · 每条得分都可溯源
+  </div>
 </header>
 
 <div class="layout">
-  <!-- ========== 左侧控制面板 ========== -->
   <aside class="sidebar">
     <h2>🕹️ 控制面板</h2>
 
@@ -32,26 +32,34 @@
 
     <div class="filter-group">
       <p class="hint">📐 图表解读：</p>
-      <ul style="font-size:12.5px;color:#656d76;padding-left:18px;line-height:1.7;margin:0">
-        <li><strong>X 轴</strong> — 计算驱动程度<br><span style="color:#8b949e">(从纯湿实验到纯代码)</span></li>
+      <ul class="legend-list">
+        <li><strong>X 轴</strong> — 计算驱动程度<br><span class="muted">(从纯湿实验到纯代码)</span></li>
         <li><strong>Y 轴</strong> — 商业化薪资潜力</li>
         <li><strong>气泡大小</strong> — 未来 3-5 年增长率</li>
         <li><strong>右上黄金区</strong> — 高算力 × 高回报</li>
       </ul>
     </div>
+
+    <div class="filter-group">
+      <p class="hint">ℹ️ 评分尺度：</p>
+      <ul class="legend-list">
+        <li><span class="muted">· 传统有机合成应届博士 ≈ 25</span></li>
+        <li><span class="muted">· 大厂资深后端 ≈ 75-80</span></li>
+        <li><span class="muted">· LLM / Quant / 头部 AIDD ≈ 95-98</span></li>
+      </ul>
+    </div>
   </aside>
 
-  <!-- ========== 主区域 ========== -->
   <main>
     <div class="card">
       <h3>📊 三维气泡图：计算驱动 × 薪资潜力 × 增长率</h3>
-      <p class="caption">悬停任意气泡可查看该领域完整画像。点击图例可切换显隐。</p>
+      <p class="caption">悬停任意气泡可查看该领域的薪资锚点、增长锚点与信源编号；点击图例切换显隐。</p>
       <div id="plot"></div>
     </div>
 
     <div class="card">
       <h3>📋 详细数据对照表</h3>
-      <p class="caption">点击任意列头可切换升序 / 降序排序。表格与上方图表实时联动。</p>
+      <p class="caption">点击任意列头可切换升序 / 降序排序；信源列可直接跳转原始报告。</p>
       <div class="scroll-x">
         <table class="data-table">
           <thead id="table-head">
@@ -62,6 +70,7 @@
               <th data-key="salary">薪资潜力 <span class="sort-indicator">▾</span></th>
               <th data-key="growth">未来增长 <span class="sort-indicator">▾</span></th>
               <th>核心描述</th>
+              <th>信源</th>
             </tr>
           </thead>
           <tbody id="table-body"></tbody>
@@ -69,9 +78,37 @@
       </div>
     </div>
 
+    <div class="card">
+      <h3>🔬 评分方法论</h3>
+      <div class="methodology">
+        <div class="method-col">
+          <h4>📐 compute · 计算驱动</h4>
+          <p>岗位日常「屏幕编码/建模」与「湿实验台」的时间占比。100 = 纯代码，0 = 纯湿实验。依据主流岗位 JD 的任务分解作定性评估。</p>
+        </div>
+        <div class="method-col">
+          <h4>💰 salary · 薪资潜力</h4>
+          <p>国内 3-7 年经验中高级岗位年度总薪酬（TC）中位数归一化。锚点：传统有机合成应届博士 ≈ 25；大厂资深后端 ≈ 75-80；LLM / 顶级 Quant ≈ 95-98。数据源：猎聘 / 脉脉 / Levels.fyi / eFinancialCareers 公开数据（2024-2026）。</p>
+        </div>
+        <div class="method-col">
+          <h4>📈 growth · 未来增长</h4>
+          <p>2025→2030 行业 CAGR 或岗位发布 YoY 增速。映射区间：&lt;10% → 35-55，10-15% → 60-75，15-22% → 75-85，22-30% → 85-93，30%+ 或 LinkedIn 头部新兴职业 → 93-98。</p>
+        </div>
+      </div>
+      <p class="disclaimer">
+        ⚠️ <strong>局限</strong>：不同咨询机构对同一赛道 CAGR 估计差异可达 2-3 倍（例如 AIDD 在 Precedence 为 9.9%、Fortune 为 30.6%），本数据集采用「取中位数 + 结合 LinkedIn 岗位增速交叉验证」的方式赋分。
+        compute 维度仍含主观成分，读者可结合自身所在团队的湿/干分工重新打分。
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📚 信源索引</h3>
+      <p class="caption">全部数据锚点可追溯到以下公开报告（按发布年份倒序）：</p>
+      <ol id="source-list" class="source-list"></ol>
+    </div>
+
     <p class="footer-note">
-      数据源：作者自制 / 可视化：<a href="https://plotly.com/javascript/" target="_blank">Plotly.js</a>
-      · 部分属于 <a href="../" style="color:#0969da">web-playground</a>
+      数据集 v2 · 2026-04 校准 · 可视化：<a href="https://plotly.com/javascript/" target="_blank">Plotly.js</a>
+      · 所属仓库 <a href="../">web-playground</a>
     </p>
   </main>
 </div>
