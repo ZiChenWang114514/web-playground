@@ -3,117 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>web-playground · 王子宸的可视化实验场</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-                   "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      background: #0f1b2d;
-      color: #e6edf3;
-      min-height: 100vh;
-    }
-    header {
-      text-align: center;
-      padding: 80px 20px 40px;
-      background: radial-gradient(ellipse at top, #1d3557 0%, #0f1b2d 70%);
-    }
-    header h1 {
-      font-size: 42px;
-      margin: 0;
-      background: linear-gradient(90deg, #a8c0d8, #e6edf3, #a8c0d8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    header p {
-      color: #8b949e;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 24px 60px;
-    }
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 22px;
-      margin-top: 30px;
-    }
-    .project-card {
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 12px;
-      padding: 24px;
-      transition: transform 0.2s, border-color 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: #58a6ff;
-    }
-    .project-card .emoji { font-size: 32px; margin-bottom: 12px; }
-    .project-card h2 {
-      font-size: 20px;
-      margin: 0 0 8px;
-      color: #58a6ff;
-    }
-    .project-card p {
-      margin: 0;
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .tag {
-      display: inline-block;
-      font-size: 11px;
-      background: #1f6feb26;
-      color: #79c0ff;
-      padding: 2px 8px;
-      border-radius: 10px;
-      margin-top: 12px;
-    }
-    footer {
-      text-align: center;
-      color: #656d76;
-      font-size: 12px;
-      padding: 24px;
-      border-top: 1px solid #21262d;
-    }
-    footer a { color: #58a6ff; text-decoration: none; }
-  </style>
+  <title>王子宸 · Zichen Wang</title>
+  <meta name="description" content="Personal homepage of Zichen Wang (王子宸) — AI drug design, PPI modeling, computational biology.">
+  <link rel="stylesheet" href="profile.css">
 </head>
 <body>
 
-<header>
-  <h1>web-playground</h1>
-  <p>王子宸的可视化实验场 · A collection of interactive data-viz experiments</p>
-</header>
+<!-- ========== 顶部导航 ========== -->
+<nav class="topnav">
+  <div class="inner">
+    <span class="brand">Zichen Wang · 王子宸</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#pubs">Publications</a></li>
+      <li><a href="#cv">CV</a></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="container">
-  <h2 style="color:#e6edf3;font-size:18px;margin:0">🧪 当前实验</h2>
 
-  <div class="projects">
-    <a class="project-card" href="career-landscape/">
-      <div class="emoji">📊</div>
-      <h2>Career Landscape</h2>
-      <p>跨越生化、CS、金融与交叉学科的多维就业景气图谱。可交互筛选 + 悬停画像 + 联动数据表。</p>
-      <span class="tag">Plotly.js · 气泡图 · 15 domains</span>
-    </a>
-  </div>
+  <!-- ========== Hero ========== -->
+  <section class="hero">
+    <img id="avatar" class="avatar" src="" alt="avatar">
+    <div>
+      <h1>
+        <span id="name-zh" class="zh">…</span>
+        <span id="name-en" class="en">…</span>
+      </h1>
+      <p id="tagline" class="tagline">…</p>
+      <div id="title-line" class="title-line">…</div>
+      <div id="hero-tags" class="tags"></div>
+      <ul id="contacts" class="contacts"></ul>
+      <span id="location" class="location"></span>
+    </div>
+  </section>
+
+  <!-- ========== About ========== -->
+  <section id="about" class="block">
+    <h2>About</h2>
+    <div id="bio" class="bio"></div>
+  </section>
+
+  <!-- ========== Research Interests ========== -->
+  <section id="research" class="block">
+    <h2>Research Interests</h2>
+    <div id="interests" class="interests"></div>
+  </section>
+
+  <!-- ========== News ========== -->
+  <section id="news-block" class="block">
+    <h2>News</h2>
+    <ul id="news" class="news"></ul>
+  </section>
+
+  <!-- ========== Projects ========== -->
+  <section id="projects-block" class="block">
+    <h2>Projects</h2>
+    <div id="projects" class="projects"></div>
+  </section>
+
+  <!-- ========== Publications ========== -->
+  <section id="pubs-block" class="block">
+    <h2>Publications</h2>
+    <ul id="pubs" class="pubs"></ul>
+  </section>
+
+  <!-- ========== CV: Education + Awards ========== -->
+  <section id="cv" class="block">
+    <h2>Education &amp; Awards</h2>
+    <div class="two-col">
+      <div>
+        <h3 style="margin:0 0 10px;font-size:15px;color:var(--ink-soft)">Education</h3>
+        <ul id="education" class="list-plain"></ul>
+      </div>
+      <div>
+        <h3 style="margin:0 0 10px;font-size:15px;color:var(--ink-soft)">Awards</h3>
+        <ul id="awards" class="list-plain"></ul>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer>
-  © 2026 王子宸 · Hosted on
-  <a href="https://github.com/ZiChenWang114514/web-playground">GitHub</a> ·
-  Built for GitHub Pages
+  © <span id="footer-date">2026</span> Zichen Wang · Built with vanilla HTML/CSS/JS ·
+  <a href="https://github.com/ZiChenWang114514/web-playground" target="_blank" rel="noopener">Source on GitHub</a>
 </footer>
 
+<script src="profile.config.js"></script>
+<script src="profile.js"></script>
 </body>
 </html>
