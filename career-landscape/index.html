@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>领域大横评 · 就业景气全景图谱 | Career Landscape</title>
+  <meta name="description" content="跨越生化、计算机、金融与交叉学科的多维可视化对比：计算驱动度 × 薪资潜力 × 未来增长率。">
+  <link rel="stylesheet" href="style.css">
+  <!-- Plotly.js CDN (v2.35, ~3.4MB gzipped)，纯前端无需后端 -->
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+<header>
+  <h1>🧪 领域大横评：就业景气全景图谱</h1>
+  <div class="subtitle">通过 15 个维度坐标，俯瞰纯计算驱动程度与商业化薪资潜力的交叉关系</div>
+</header>
+
+<div class="layout">
+  <!-- ========== 左侧控制面板 ========== -->
+  <aside class="sidebar">
+    <h2>🕹️ 控制面板</h2>
+
+    <div class="filter-group">
+      <p class="hint">1. 选择需要对比的学科大类：</p>
+      <div id="category-filters"></div>
+      <div class="btn-row">
+        <button id="btn-all">全选</button>
+        <button id="btn-none">全不选</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <p class="hint">📐 图表解读：</p>
+      <ul style="font-size:12.5px;color:#656d76;padding-left:18px;line-height:1.7;margin:0">
+        <li><strong>X 轴</strong> — 计算驱动程度<br><span style="color:#8b949e">(从纯湿实验到纯代码)</span></li>
+        <li><strong>Y 轴</strong> — 商业化薪资潜力</li>
+        <li><strong>气泡大小</strong> — 未来 3-5 年增长率</li>
+        <li><strong>右上黄金区</strong> — 高算力 × 高回报</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ========== 主区域 ========== -->
+  <main>
+    <div class="card">
+      <h3>📊 三维气泡图：计算驱动 × 薪资潜力 × 增长率</h3>
+      <p class="caption">悬停任意气泡可查看该领域完整画像。点击图例可切换显隐。</p>
+      <div id="plot"></div>
+    </div>
+
+    <div class="card">
+      <h3>📋 详细数据对照表</h3>
+      <p class="caption">点击任意列头可切换升序 / 降序排序。表格与上方图表实时联动。</p>
+      <div class="scroll-x">
+        <table class="data-table">
+          <thead id="table-head">
+            <tr>
+              <th data-key="field">领域 <span class="sort-indicator">▾</span></th>
+              <th data-key="category">大类 <span class="sort-indicator">▾</span></th>
+              <th data-key="compute">计算驱动 <span class="sort-indicator">▾</span></th>
+              <th data-key="salary">薪资潜力 <span class="sort-indicator">▾</span></th>
+              <th data-key="growth">未来增长 <span class="sort-indicator">▾</span></th>
+              <th>核心描述</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="footer-note">
+      数据源：作者自制 / 可视化：<a href="https://plotly.com/javascript/" target="_blank">Plotly.js</a>
+      · 部分属于 <a href="../" style="color:#0969da">web-playground</a>
+    </p>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
